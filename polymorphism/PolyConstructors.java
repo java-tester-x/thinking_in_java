@@ -1,5 +1,19 @@
 package polymorphism;
 
+/**
+ * RUN:
+ * 
+ *     javac polymorphism/PolyConstructors.java && java polymorphism.PolyConstructors
+ *     
+ * OUTPUT:
+ * 
+ *     Glyph() before invoking draw()
+ *     RoundGlyph.draw().radius = 0
+ *     Glyph() after invoking draw()
+ *     RoundGlyph.RoundGlyph().radius = 5
+ *     
+ */
+
 class Glyph {
     
     void draw() {
