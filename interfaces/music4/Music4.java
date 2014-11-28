@@ -2,6 +2,42 @@ package interfaces.music4;
 
 import  polymorphism.music.Note;
 
+/**
+ * RUN:
+ *     javac interfaces/music4/Music4.java && java interfaces.music4.Music4
+ *
+ * OUTPUT:
+ * 
+ *     Wind.play() MIDDLE_C
+ *     Percussion.play() MIDDLE_C
+ *     Stringed.play() MIDDLE_C
+ *     Brass.play() MIDDLE_C
+ *     Woodwind.play() MIDDLE_C
+ */
+public class Music4 {
+
+    static void tune(Instrument i) {
+        i.play(Note.MIDDLE_C);
+    }
+
+    static void tuneAll(Instrument[] e) {
+        for (Instrument i : e) {
+            tune(i);
+        }
+    }
+
+    public static void main(String[] args) {
+        Instrument[] orchestra = {
+            new Wind(),
+            new Percussion(),
+            new Stringed(),
+            new Brass(),
+            new Woodwind()
+        };
+
+        tuneAll(orchestra);
+    }
+}
 
 abstract class Instrument {
 
@@ -75,20 +111,4 @@ class  Woodwind extends Wind {
     public String what() {
         return "Woodwind";
     }
-}
-
-
-
-public class Music4 {
-
-    static void tune(Instrument i) {
-        i.play(Note.MIDDLE_C);
-    }
-
-    static void tuneAll(Instrument[] e) {
-        for (Instrument i : e) {
-            tune(i);
-        }
-    }
-
 }
