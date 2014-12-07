@@ -32,7 +32,8 @@ public class RandomWords implements Readable {
         this.count = count;
     }
 
-    public int read(CharBuffer cb) {
+    public int read(CharBuffer cb)
+    {
         if (count-- == 0) {
             return -1;
         }
