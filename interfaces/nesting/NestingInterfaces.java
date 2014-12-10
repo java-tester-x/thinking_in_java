@@ -4,7 +4,7 @@ package interfaces.nesting;
  * RUN:
  *         javac interfaces/nesting/NestingInterfaces.java && java interfaces.nesting.NestingInterfaces
  * OUTPUT:
- *         
+ *         DImp2 f()
  */
 
 public class NestingInterfaces {
