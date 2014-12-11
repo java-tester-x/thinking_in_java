@@ -20,6 +20,7 @@ public class Factories {
 
     public static void main(String[] args) {
         serviceConsumer(new Implementation1Factory());
+        // Реализации полностью заменяемы!
         serviceConsumer(new Implementation2Factory());
     }
 }
