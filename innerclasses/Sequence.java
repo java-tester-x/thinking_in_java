@@ -27,15 +27,15 @@ public class Sequence {
         private int i = 0;
 
         public boolean end() {
-            return i == items.length;
+            return i == items.length; // using private field "items" of outer class !  
         }
         
         public Object current() {
-            return items[i];
+            return items[i]; // using private field "items" of outer class !
         }
         
         public void next() {
-            if (i < items.length) {
+            if (i < items.length) { // using private field "items" of outer class !
                 i++;
             }
         }
