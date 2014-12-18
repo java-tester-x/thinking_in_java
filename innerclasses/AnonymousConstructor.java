@@ -14,7 +14,12 @@ public class AnonymousConstructor {
     public static Base getBase(int i) {
         return new Base(i) {
             {
-                System.out.println("Initialization instance of inner class");
+                //
+                // error: local variable i is accessed from within inner class; needs to be declared final
+                // 
+                // System.out.println("i = " + i);
+
+                System.out.println("Instance initialization of inner class");
             }
 
             public void f() {
