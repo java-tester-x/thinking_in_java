@@ -9,7 +9,8 @@ package innerclasses;
 
 public class Parcel10 {
 
-    public Destination destination(final String dest, final float price) {
+    public Destination destination(final String dest, final float price)
+    {
         return new Destination() {
             
             private int cost;
