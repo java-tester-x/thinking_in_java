@@ -56,7 +56,7 @@ class Callee2 extends MyIncrement {
 
     private int i = 0;
 
-    public /* private */ void increment() {
+    /* private */ public void increment() {
         super.increment();
         i++;
         System.out.println(i);

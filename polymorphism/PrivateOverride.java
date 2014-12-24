@@ -1,5 +1,13 @@
 package polymorphism;
 
+/**
+ * RUN:
+ *         javac polymorphism/PrivateOverride.java && java polymorphism.PrivateOverride
+ * OUTPUT:
+ *         private f()
+ *         public f()
+ */
+
 
 public class PrivateOverride {
 
