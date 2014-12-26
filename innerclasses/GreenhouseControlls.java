@@ -2,14 +2,8 @@ package innerclasses;
 
 import innerclasses.controller.*;
 
-/**
- * RUN:
- *         javac innerclasses.GreenhouseControlls.java && java innerclasses.GreenhouseControlls
- * OUTPUT:
- *         
- */
 
-public class GreenhouseControlls {
+public class GreenhouseControlls extends Controller {
 
     // -------------------------------------------------------------------------
    
@@ -154,6 +148,6 @@ public class GreenhouseControlls {
 
         public void action() { System.exit(0); }
 
-        public String toString() { return "Terminating" }
+        public String toString() { return "Terminating"; }
     }
 }

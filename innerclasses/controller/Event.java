@@ -17,7 +17,7 @@ public abstract class Event {
     }
 
     public boolean ready() {
-        return System.nanoTime >= eventTime;
+        return System.nanoTime() >= eventTime;
     }
 
     public abstract void action();
