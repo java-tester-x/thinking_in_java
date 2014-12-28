@@ -4,9 +4,17 @@ import innerclasses.controller.*;
 
 /**
  * RUN:
- *         javac innerclasses.GreenhouseController.java && java innerclasses.GreenhouseController
+ *         javac innerclasses/GreenhouseController.java && java innerclasses.GreenhouseController 5000
  * OUTPUT:
- *         
+ *         B-a-a-m!
+ *         Thermostat using nightly mode
+ *         Light on
+ *         Light off
+ *         Water on
+ *         Water off
+ *         Thermostat using dayly mode
+ *         Restart of system
+ *         Terminating
  */
 
 public class GreenhouseController {

@@ -12,7 +12,7 @@ public abstract class Event {
     }
 
     public void start() {
-        System.out.println("start()");
+        // System.out.println("start()");
         eventTime = System.nanoTime() + delayTime;
     }
 
