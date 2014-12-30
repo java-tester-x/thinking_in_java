@@ -14,7 +14,7 @@ public class DotThis {
     public class Inner {
 
         public DotThis outer() {
-            return DotThis.this; // be carefully and use exactly "@"DotThis.this" 
+            return DotThis.this; // be carefully and use exactly "DotThis.this" 
         }
     }
 
