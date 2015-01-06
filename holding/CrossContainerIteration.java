@@ -1,0 +1,41 @@
+package holding;
+
+/**
+ * RUN:
+ *         javac typeinfo/pets/*.java
+ *         javac holding/CrossContainerIteration.java && java holding.CrossContainerIteration
+ * OUTPUT:
+ *         0:Rat 1:Manx 2:Cymric 3:Mutt 4:Pug 5:Cymric 6:Pug 7:Manx
+ *         0:Rat 1:Manx 2:Cymric 3:Mutt 4:Pug 5:Cymric 6:Pug 7:Manx
+ *         2:Cymric 1:Manx 0:Rat 6:Pug 5:Cymric 4:Pug 3:Mutt 7:Manx
+ *         5:Cymric 2:Cymric 7:Manx 1:Manx 3:Mutt 6:Pug 4:Pug 0:Rat
+ */
+
+import java.util.*;
+import typeinfo.pets.*;
+
+public class CrossContainerIteration {
+    
+    public static void display(Iterator<Pet> it) {
+        while (it.hasNext()) {
+            Pet p = it.next();
+            System.out.print(p.id() + ":" + p + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Pet> pets = new Pets().arrayList(8);
+
+        LinkedList<Pet> petsLL = new LinkedList<Pet>(pets);
+
+        HashSet<Pet> petsHS = new HashSet<Pet>(pets);
+
+        TreeSet<Pet> petsTS = new TreeSet<Pet>(pets);
+
+        display(pets.iterator());
+        display(petsLL.iterator());
+        display(petsHS.iterator());
+        display(petsTS.iterator());
+    }
+}

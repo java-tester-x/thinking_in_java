@@ -34,6 +34,7 @@ package holding;
  */
 
 import java.util.*;
+import typeinfo.pets.*;
 
 public class ListFeatures {
     
@@ -81,8 +82,9 @@ public class ListFeatures {
         System.out.println("12: "+ pets.containsAll(sub));
 
         List<Pet> copy = new ArrayList<Pet>(pets);
+        System.out.println("copy: "+ copy);
         sub = Arrays.asList(pets.get(1), pets.get(4));
-        System.out.println("sub: "+ sub); //sub: [Mouse, Pug]  - why?
+        System.out.println("sub: "+ sub);
 
         copy.retainAll(sub);
         System.out.println("13: "+ copy);
@@ -114,187 +116,5 @@ public class ListFeatures {
 
         Pet[] pa = pets.toArray(new Pet[0]);
         System.out.println("23: "+ pa[3].id());
-
-    }
-}
-
-
-class Pets {
-
-    private static List<Class<? extends Pet>> types = new ArrayList<Class<? extends Pet>>();
-    
-    private static String[] typeNames = { 
-        "holding.Mutt",
-        "holding.Pug",
-        "holding.EgyptianMau",
-        "holding.Manx",
-        "holding.Cymric",
-        "holding.Rat",
-        "holding.Mouse",
-        "holding.Hamster"
-    };
-     
-    @SuppressWarnings("unchecked")
-    private static void loader()
-    { 
-        try {
-            for(String name : typeNames) {
-                types.add((Class<? extends Pet>)Class.forName(name)); 
-            }
-        }   
-        catch(ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    
-    static {
-        loader();
-    }
-
-    public List<Class<? extends Pet>> getTypes() {
-        return types;
-    }
-
-    private Random rand = new Random(47); 
-    
-    public Pet randomPet()
-    {
-        int n = rand.nextInt(typeNames.length);
-        try {
-            return getTypes().get(n).newInstance();
-        } 
-        catch( InstantiationException e) {
-            throw new RuntimeException(e);
-        } 
-        catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
-     
-    public Pet[] createArray(int size)
-    {
-        Pet[] result = new Pet[size];
-        for (int i=0; i < size; i++) {
-            result[i] = randomPet();
-        }
-        return result;
-    }
-     
-    public ArrayList<Pet> arrayList(int size) 
-    {
-        ArrayList<Pet> result = new ArrayList<Pet>();
-        Collections.addAll(result, createArray(size));
-        return result;
-    }
-}
-
-
-class Pet extends Individual {
-    public Pet(String name) { super(name); } 
-    public Pet () { super(); } 
-}
-
-class Dog extends Pet {
-    public Dog(String name) { super(name); } 
-    public Dog() { super(); } 
-}
-
-class Cat extends Pet {
-    public Cat(String name) { super(name); } 
-    public Cat() { super();} 
-}
-
-class Rodent extends Pet {
-     public Rodent(String name) { super(name); } 
-    public Rodent() { super(); } 
-}
-
-class Pug extends Dog {
-    public Pug(String name) { super(name); } 
-    public Pug() { super(); } 
-}
-
-class Mutt extends Dog {
-    public Mutt(String name) { super(name); } 
-    public Mutt() { super(); } 
-}
-
-class EgyptianMau extends Cat { 
-    public EgyptianMau(String name) { super(name); }
-    public EgyptianMau() { super(); }
-}
-
-class Manx extends Cat {
-    public Manx(String name) { super(name); }
-    public Manx() { super(); }
-}
-
-class Cymric extends Manx {
-    public Cymric(String name) { super(name); } 
-    public Cymric() { super(); } 
-}
-
-class Rat extends Rodent {
-    public Rat(String name) { super(name); } 
-    public Rat() { super(); }
-}
-
-class Mouse extends Rodent {
-    public Mouse(String name) { super(name); }
-    public Mouse() { super(); }
-}
-
-class Hamster extends Rodent {
-    public Hamster(String name) { super(name); }
-    public Hamster() { super(); } 
-}
-
-class Individual implements Comparable<Individual> {
-    private static long counter = 0;
-    private final long id = counter++;
-    private String name;
-    
-    public Individual(String name) { this.name = name; }
-   
-    // 'name' is optional:
-    public Individual() {}
-
-    public String toString() {
-        return getClass().getSimpleName() + (name == null ? "" : " " + name);
-    }
-    
-    public long id() { return id; }
-    
-    public boolean equals(Object o) {
-        return o instanceof Individual && id == ((Individual)o).id;
-    }
-    
-    public int hashCode() {
-        int result = 17;
-        if(name != null) {
-            result = 37 * result + name.hashCode();
-        }
-        result = 37 * result + (int)id;
-        return result;
-    }
-
-    public int compareTo(Individual arg)
-    {
-        // Compare by class name first:
-        String first = getClass().getSimpleName();
-        String argFirst = arg.getClass().getSimpleName();
-        int firstCompare = first.compareTo(argFirst);
-        
-        if(firstCompare != 0) {
-            return firstCompare;
-        }
-
-        if(name != null && arg.name != null) {
-            int secondCompare = name.compareTo(arg.name);
-            if(secondCompare != 0) {
-                return secondCompare;
-            }
-        }
-        return (arg.id < id ? -1 : (arg.id == id ? 0 : 1));
     }
 }
