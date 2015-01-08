@@ -40,17 +40,18 @@ public class LinkedListFeatures {
         println("pets: "               + pets);
         println("");
 
+        // add to the head of linked list
         pets.addFirst(new Rat());
         println("After addFirst(): " + pets);
         
+        // add to the end of list
         pets.offer(aPets.randomPet());
-        println("After offer(): " + pets);
-        
+        println("After offer(): " + pets);        
         pets.add(aPets.randomPet());
-        println("After add(): " + pets);
-        
+        println("After add(): " + pets);        
         pets.addLast(new Hamster());
         println("After addLast(): "   + pets);
+
         println("pets.removeLast(): " + pets.removeLast());
         println("pets: "              + pets);
     }
