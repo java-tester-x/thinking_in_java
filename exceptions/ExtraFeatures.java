@@ -62,7 +62,6 @@ public class ExtraFeatures {
             e.printStackTrace(System.out);
             System.out.println("e.val() = "+e.val());
         }
-
     }
 }
 
