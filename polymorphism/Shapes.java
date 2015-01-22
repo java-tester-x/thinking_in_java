@@ -1,4 +1,21 @@
+package polymorphism;
+
 import polymorphism.shape.*;
+
+/**
+ * RUN:
+ *         javac polymorphism/Shapes.java && java polymorphism.Shapes
+ * OUTPUT:
+ *         Triangle.draw()
+ *         Triangle.draw()
+ *         Square.draw()
+ *         Triangle.draw()
+ *         Square.draw()
+ *         Triangle.draw()
+ *         Square.draw()
+ *         Triangle.draw()
+ *         Circle.draw()
+ */
 
 public class Shapes {
 
