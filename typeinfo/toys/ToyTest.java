@@ -66,7 +66,7 @@ public class ToyTest {
             System.out.println("Access deny");
             System.exit(1);
         }
-        printInfo(obj.getClass());
+        printInfo(obj.getClass()); // printInfo(up);
     }
 }
 
@@ -79,8 +79,7 @@ class Toy {
     Toy(int i) {}
 }
 
-class FancyToy  extends     Toy
-    implements  HasBatteries, Waterproof, Shoots {
+class FancyToy extends Toy implements HasBatteries, Waterproof, Shoots {
 
     FancyToy() { super(1); }
 }
