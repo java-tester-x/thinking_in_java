@@ -36,6 +36,7 @@ public class ClassInitialization {
         // initialization
         System.out.println(Initable2.staticNonFinal);
 
+        // initialization
         Class initable3 = Class.forName("typeinfo.Initable3");
         System.out.println("After creation link on Initable3");
         System.out.println(Initable3.staticNonFinal);
