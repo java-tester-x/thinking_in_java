@@ -6,7 +6,10 @@ import java.util.*;
  * RUN:
  *         javac typeinfo/pets/LiteralPetCreator.java && java typeinfo.pets.LiteralPetCreator
  * OUTPUT:
- *         
+ *         [class typeinfo.pets.Mutt, class typeinfo.pets.Pug,
+ *          class typeinfo.pets.EgyptianMau, class typeinfo.pets.Manx, 
+ *          class typeinfo.pets.Cymric, class typeinfo.pets.Rat, 
+ *          class typeinfo.pets.Mouse, class typeinfo.pets.Hamster]
  */
 
 public class LiteralPetCreator extends PetCreator {
