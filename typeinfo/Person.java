@@ -1,6 +1,6 @@
 package typeinfo;  
 
-import java.lang.reflect.*;
+import net.mindview.util.*;
 
 /**
  * RUN:

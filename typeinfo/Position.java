@@ -1,7 +1,5 @@
 package typeinfo;  
 
-import java.lang.reflect.*;
-
 /**
  * RUN:
  *         javac typeinfo/Position.java
