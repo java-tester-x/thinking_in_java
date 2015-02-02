@@ -21,6 +21,9 @@ public class Holder3<T> {
         Holder3<Automobile> h3 = new Holder3<Automobile>(new Automobile());
 
         Automobile a = h3.get();
+
+        // COMPILATION ERORS:
+        // 
         // h3.set("Not Automobile");
         // h3.set(1);
     }
