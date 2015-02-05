@@ -44,6 +44,7 @@ public class CoffeeGenerator implements Generator<Coffee>, Iterable<Coffee> {
         }
     }
 
+/*
     class CoffeeIterator implements Iterator<Coffee> {
         int count = size;
 
@@ -61,6 +62,24 @@ public class CoffeeGenerator implements Generator<Coffee>, Iterable<Coffee> {
 
     public Iterator<Coffee> iterator() {
         return new CoffeeIterator();
+    }
+*/
+
+    public Iterator<Coffee> iterator() {
+        return new Iterator<Coffee>() {
+            int count = size;
+
+            public boolean hasNext() { return count > 0; }
+
+            public Coffee next() {
+                count--;
+                return CoffeeGenerator.this.next();
+            }
+
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
     }
 
     public static void main(String[] args) {
