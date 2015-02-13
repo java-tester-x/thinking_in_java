@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * RUN:
- *         javac generics/HasF.java && java generics.HasF
+ *         javac generics/HasF.java
  * OUTPUT:
  *         
  */
