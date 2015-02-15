@@ -15,6 +15,7 @@ public class FilledListMaker<T> {
         List<T> result = new ArrayList<T>();
         for (int i =0; i < n; i++) {
             result.add(t);
+            //System.out.println(t.toUpperCase());
         }
         return result;
     }
