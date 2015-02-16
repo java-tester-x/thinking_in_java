@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * RUN:
- *         javac generics/Erased.java
+ *         javac generics/Erased.java && java generics.Erased
  * OUTPUT:
  *         
  */
