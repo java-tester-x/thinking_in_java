@@ -7,7 +7,10 @@ import java.lang.reflect.*;
  * RUN:
  *         javac generics/GenericWriting.java && java generics.GenericWriting
  * OUTPUT:
- *         
+ *         [generics.Apple@1befab0]
+ *         [generics.Apple@13c5982]
+ *         [generics.Apple@1befab0, generics.Apple@1186fab]
+ *         [generics.Apple@13c5982, generics.Apple@14b7453]
  */
 
 public class GenericWriting {
