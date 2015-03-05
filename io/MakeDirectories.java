@@ -10,7 +10,7 @@ import java.util.regex.*;
  *         
  * OUTPUT:
  *         created MakeDirectoriesTest
- *         Full name: D:\univer\java\thinking_in_java\MakeDirectoriesTest
+ *         Full name: D:\\univer\java\\thinking_in_java\\MakeDirectoriesTest
  *          awailable for reading: true
  *          awailable for writing: true
  *          file name getName(): MakeDirectoriesTest
