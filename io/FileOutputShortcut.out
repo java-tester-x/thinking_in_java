@@ -1,0 +1,40 @@
+1 package io;
+2 
+3 import java.io.*;
+4 import java.util.*;
+5 
+6 /**
+7  * RUN:
+8  *         javac io/FileOutputShortcut.java && java io.FileOutputShortcut
+9  *         
+10  * OUTPUT:
+11  *         
+12  */
+13 
+14 public class FileOutputShortcut {
+15 
+16     static String file = "io/FileOutputShortcut.out";
+17 
+18     public static void main(String[] args) throws IOException {
+19         
+20         BufferedReader in = new BufferedReader(
+21             new StringReader(
+22                 BufferedInputFile.read("io/FileOutputShortcut.java")
+23             )
+24         );
+25 
+26         // short syntax
+27         PrintWriter out = new PrintWriter(file);
+28 
+29         int lineCount = 1;
+30         String s;
+31 
+32         while ((s = in.readLine()) != null) {
+33             out.println(lineCount++ + " " + s);
+34         }
+35 
+36         out.close();
+37 
+38         System.out.println(BufferedInputFile.read(file));
+39     }
+40 }
