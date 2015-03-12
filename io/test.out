@@ -40,6 +40,8 @@ public class Redirecting {
         }
 
         out.close();
+
+        console.println("test");
         System.setOut(console);
     }
 }

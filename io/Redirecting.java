@@ -40,6 +40,8 @@ public class Redirecting {
         }
 
         out.close();
+
+        
         System.setOut(console);
     }
 }
