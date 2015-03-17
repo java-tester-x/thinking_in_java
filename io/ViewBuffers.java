@@ -8,7 +8,13 @@ import java.util.*;
  *         javac io/ViewBuffers.java && java io.ViewBuffers
  *         
  * OUTPUT:
- *         
+ *         Byte BUffer: 0->0 1->0 2->0 3->0 4->0 5->0 6->0 7->97
+ *         Char BUffer: 0->  1->  2->  3->a
+ *         Float BUffer: 0->0.0 1->1.36E-43
+ *         Int BUffer: 0->0 1->97
+ *         Long BUffer: 0->97
+ *         Short BUffer: 0->0 1->0 2->0 3->97
+ *         Double BUffer: 0->4.8E-322
  */
 
 public class ViewBuffers {
