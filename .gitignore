@@ -16,6 +16,10 @@ local.properties
 .classpath
 .settings/
 .loadpath
+*.txt
+*.dat
+*.out
+*.tmp
 
 # External tool builders
 .externalToolBuilders/
