@@ -25,10 +25,10 @@ import java.util.*;
 public class StoreCADState {
 
     public static void main(String[] args) throws Exception {
-        List<Class<? extends Shape>> shapeTypes = new ArrayList<Class<? extends Shape>>();
-        shapeTypes.add(Circle.class);
-        shapeTypes.add(Square.class);
-        shapeTypes.add(Line.class);
+        // List<Class<? extends Shape>> shapeTypes = new ArrayList<Class<? extends Shape>>();
+        // shapeTypes.add(Circle.class);
+        // shapeTypes.add(Square.class);
+        // shapeTypes.add(Line.class);
 
         List<Shape> shapes = new ArrayList<Shape>();
         for (int i = 0; i < 10; i++) {
@@ -42,7 +42,7 @@ public class StoreCADState {
         ObjectOutputStream out = new ObjectOutputStream(
             new FileOutputStream("CADState.out")
         );
-        out.writeObject(shapeTypes);
+        // out.writeObject(shapeTypes);
         Line.serializeStaticState(out);
         out.writeObject(shapes);
 
@@ -96,6 +96,14 @@ class Circle extends Shape {
         super(xVal, yVal, dim);
     }
 
+    public static void serializeStaticState(ObjectOutputStream os) throws IOException {
+        os.writeInt(color);
+    }
+
+    public static void deserializeStaticState(ObjectInputStream os) throws IOException {
+        color = os.readInt();
+    }
+
     public void setColor(int newColor) { color = newColor; }
 
     public int getColor() { return color; }
@@ -108,6 +116,14 @@ class Square extends Shape {
     public Square(int xVal, int yVal, int dim) {
         super(xVal, yVal, dim);
         color = RED;
+    }
+
+    public static void serializeStaticState(ObjectOutputStream os) throws IOException {
+        os.writeInt(color);
+    }
+
+    public static void deserializeStaticState(ObjectInputStream os) throws IOException {
+        color = os.readInt();
     }
 
     public void setColor(int newColor) { color = newColor; }
