@@ -13,7 +13,7 @@ import java.util.*;
  *         
  */
 
-public class SimplePriorities {
+public class SimplePriorities implements Runnable {
 
     private int countDown = 5;
 
@@ -42,7 +42,7 @@ public class SimplePriorities {
 
             System.out.println(this);
 
-            if (--countDown == 0) {
+            if (--countDown == 0) { 
                 return;
             }
         }
@@ -51,11 +51,11 @@ public class SimplePriorities {
     public static void main(String[] args) {
         ExecutorService exec = Executors.newCachedThreadPool();
 
-        for (int = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             exec.execute(new SimplePriorities(Thread.MIN_PRIORITY));
         }
 
-        exec.execute(new SimplePriorities(Tgread.MAX_PRIORITY));
+        exec.execute(new SimplePriorities(Thread.MAX_PRIORITY));
 
         exec.shutdown();
     }
