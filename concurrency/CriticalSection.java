@@ -10,11 +10,43 @@ import java.util.*;
  *         javac concurrency/CriticalSection.java && java concurrency.CriticalSection
  *         
  * OUTPUT:
- *         
+ *         pm1: Pair: x: 37, y: 37 checkCounter = 610
+ *         pm2: Pair: x: 38, y: 38 checkCounter = 18281499
  */
 
 public class CriticalSection {
 
+    static void testApproaches(PairManager pman1, PairManager pman2) {
+        ExecutorService exec = Executors.newCachedThreadPool();
+        
+        PairManipulator pm1 = new PairManipulator(pman1);
+        PairManipulator pm2 = new PairManipulator(pman2);
+
+        PairChecker pcheck1 = new PairChecker(pman1);
+        PairChecker pcheck2 = new PairChecker(pman2);
+
+        exec.execute(pm1);
+        exec.execute(pm2);
+
+        exec.execute(pcheck1);
+        exec.execute(pcheck2);
+
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        }
+        catch (InterruptedException e) {
+            System.out.println("Sleep interrupted");
+        }
+
+        System.out.println("pm1: "+pm1 +"\npm2: "+pm2);
+        System.exit(0);
+    }
+
+    public static void main(String[] args) {
+        PairManager pman1 = new PairManager1();
+        PairManager pman2 = new PairManager2();
+        testApproaches(pman1, pman2);
+    }
 }
 
 
@@ -81,4 +113,60 @@ abstract class PairManager {
     }
 
     public abstract void increment();
+}
+
+class PairManager1 extends PairManager {
+    public synchronized void increment() {
+        p.incrementX();
+        p.incrementY();
+        store(getPair());
+    }
+}
+
+class PairManager2 extends PairManager {
+    public void increment() {
+        Pair temp;
+
+        synchronized(this) {
+            p.incrementX();
+            p.incrementY();
+            temp = getPair();
+        }
+        store(temp);
+    }
+}
+
+class PairManipulator implements Runnable {
+
+    private PairManager pm;
+
+    public PairManipulator(PairManager pm) {
+        this.pm = pm;
+    }
+
+    public void run() {
+        while (true) {
+            pm.increment();
+        }
+    }
+
+    public String toString() {
+        return "Pair: " + pm.getPair() + " checkCounter = " + pm.checkCounter.get();
+    }
+}
+
+class PairChecker implements Runnable {
+
+    private PairManager pm;
+
+    public PairChecker(PairManager pm) {
+        this.pm = pm;
+    }
+
+    public void run() {
+        while (true) {
+            pm.checkCounter.incrementAndGet();
+            pm.getPair().checkState();
+        }
+    }
 }
