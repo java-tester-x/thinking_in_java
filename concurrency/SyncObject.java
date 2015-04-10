@@ -6,7 +6,16 @@ package concurrency;
  *         javac concurrency/SyncObject.java && java concurrency.SyncObject
  *         
  * OUTPUT:
- *         
+ *         g()
+ *         f()
+ *         f()
+ *         f()
+ *         f()
+ *         f()
+ *         g()
+ *         g()
+ *         g()
+ *         g()
  */
 
 public class SyncObject {
