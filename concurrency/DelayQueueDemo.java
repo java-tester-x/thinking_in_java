@@ -88,7 +88,7 @@ class DelayedTask implements Runnable, Delayed {
                 System.out.print(pt.summary() + " ");
             }
             System.out.println();
-            System.out.println(this + " call shutdownNow()");
+            System.out.println(this + " calling shutdownNow()");
             exec.shutdownNow();
         }
     }
