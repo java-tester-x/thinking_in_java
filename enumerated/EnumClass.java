@@ -6,7 +6,24 @@ import java.util.*;
  * RUN:
  *         javac enumerated/EnumClass.java && java enumerated.EnumClass
  * OUTPUT:
- *        
+ *         GROUND ordinal: 0
+ *         -1 false false
+ *         class enumerated.Shrubbery
+ *         GROUND
+ *         ---------------------------------
+ *         CRAWLING ordinal: 1
+ *         0 true true
+ *         class enumerated.Shrubbery
+ *         CRAWLING
+ *         ---------------------------------
+ *         HANGING ordinal: 2
+ *         1 false false
+ *         class enumerated.Shrubbery
+ *         HANGING
+ *         ---------------------------------
+ *         HANGING
+ *         CRAWLING
+ *         GROUND
  */
 
 
