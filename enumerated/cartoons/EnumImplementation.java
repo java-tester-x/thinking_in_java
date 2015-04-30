@@ -16,9 +16,13 @@ enum CartoonCharacter implements Generator<CartoonCharacter> {
     
     SLAPY, SPARKY, PUNCHY, SILLY, BOUNCY, NUTTY, BOB;
 
-    private Random rand = new Random(47);
+    private static Random rand = new Random(47);
 
     public CartoonCharacter next() {
+        return values()[rand.nextInt(values().length)];
+    }
+
+    public static CartoonCharacter staticNext() {
         return values()[rand.nextInt(values().length)];
     }
 }
@@ -34,6 +38,11 @@ public class EnumImplementation {
         CartoonCharacter cc = CartoonCharacter.BOB;
         for (int i = 0; i < 10; i++) {
             printNext(cc);
+        }
+
+        System.out.println();
+        for (int i = 0; i < 10; i++) {
+            System.out.print(String.format(CartoonCharacter.staticNext() + ", "));
         }
     }
 }
