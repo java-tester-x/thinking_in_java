@@ -123,10 +123,103 @@ public class PostOffice {
         for (Mail mail : Mail.generator(10)) {
             System.out.println(mail.details());
             handle(mail);
-            System.out.println("***************");
+            System.out.println("***************");            
         }
+
+        PostOffice2.main(args);
     }
 }
+
+
+class PostOffice2 {
+    
+    enum MailHandler2 { GENERAL_DELIVERY, MACHINE_SCAN, VISUAL_INSPECTION, RETURN_TO_SENDER }
+
+    public interface MailHandlerAction { boolean action(Mail m); }
+
+    public static void main(String[] args) {
+        EnumMap<MailHandler2, MailHandlerAction> em = new EnumMap<MailHandler2, MailHandlerAction>(MailHandler2.class);
+        
+        em.put(MailHandler2.GENERAL_DELIVERY, new MailHandlerAction() {
+            public boolean action(Mail m) {
+                switch (m.generalDelivery) {
+                    
+                    case YES:
+                        System.out.println("Using general delivery for: " + m);
+                        return true;
+                    
+                    default:
+                        return false;
+                }
+            }
+        });
+
+        em.put(MailHandler2.MACHINE_SCAN, new MailHandlerAction() {
+            public boolean action(Mail m) {
+                switch (m.scannability) {
+
+                    case UNSCANNABLE:
+                        return false;
+
+                    default:
+                        switch (m.address) {
+                            case INCORRECT:
+                                return false;
+
+                            default:
+                                System.out.println("Delivering "+m+" automatically");
+                                return true;
+                        }
+                }
+            }
+        });
+
+        em.put(MailHandler2.VISUAL_INSPECTION, new MailHandlerAction() {
+            public boolean action(Mail m) {
+                switch (m.readability) {
+                    case ILLEGIBLE:
+                        return false;
+
+                    default:
+                        switch (m.address) {
+                            case INCORRECT:
+                                return false;
+
+                            default:
+                                System.out.println("Delivering " + m + " normally");
+                                return true;
+                        }
+                }
+            }
+        });
+
+        em.put(MailHandler2.RETURN_TO_SENDER, new MailHandlerAction() {
+            public boolean action(Mail m) {
+                switch (m.returnAddress) {
+                    case MISSING:
+                        return false;
+
+                    default:
+                        System.out.println("Returning " + m + " to sender");
+                        return true;
+                }
+            }
+        });
+
+        for (Mail mail : Mail.generator(10)) {
+            System.out.println(mail.details());
+            
+            for (Map.Entry<MailHandler2, MailHandlerAction> e : em.entrySet()) {
+                if (e.getValue().action(mail)) {
+                    break;
+                }
+            }
+
+            System.out.println("***************");            
+        }       
+    }   
+}
+
 
 class Mail {
 

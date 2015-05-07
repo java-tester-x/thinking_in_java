@@ -50,7 +50,7 @@ public enum Meal2 {
 
     public interface Food {
         enum Appetizer implements Food {
-                SALAD, SOUP, SPRING_ROLLS;
+            SALAD, SOUP, SPRING_ROLLS;
         }
 
         enum MainCourse implements Food {
