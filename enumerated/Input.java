@@ -29,6 +29,8 @@ public enum Input {
 
     Input(int value) { this.value = value; }
 
+    Input() {}
+
     int amount() { return value; }
 
     static Random rand = new Random(47);
