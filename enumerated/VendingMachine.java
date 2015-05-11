@@ -61,7 +61,6 @@ public class VendingMachine {
                         state = TERMINAL;
                     
                     default:
-                        break;
                 }
             }
         },
@@ -91,7 +90,6 @@ public class VendingMachine {
                         state = TERMINAL;
                     
                     default:
-                        break;
                 }
             }
         },
