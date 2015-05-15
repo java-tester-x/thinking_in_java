@@ -8,7 +8,26 @@ import static enumerated.Outcome.*;
  * RUN:
  *         javac enumerated/RoShamBo2.java && java enumerated.RoShamBo2
  * OUTPUT:
- *         
+ *         ROCK vs. ROCK: DRAW
+ *         SCISSORS vs. ROCK: LOSE
+ *         SCISSORS vs. ROCK: LOSE
+ *         SCISSORS vs. ROCK: LOSE
+ *         PAPER vs. SCISSORS: LOSE
+ *         PAPER vs. PAPER: DRAW
+ *         PAPER vs. SCISSORS: LOSE
+ *         ROCK vs. SCISSORS: WIN
+ *         SCISSORS vs. SCISSORS: DRAW
+ *         ROCK vs. SCISSORS: WIN
+ *         SCISSORS vs. PAPER: WIN
+ *         SCISSORS vs. PAPER: WIN
+ *         ROCK vs. PAPER: LOSE
+ *         ROCK vs. SCISSORS: WIN
+ *         SCISSORS vs. ROCK: LOSE
+ *         PAPER vs. SCISSORS: LOSE
+ *         SCISSORS vs. PAPER: WIN
+ *         SCISSORS vs. PAPER: WIN
+ *         SCISSORS vs. PAPER: WIN
+ *         SCISSORS vs. PAPER: WIN
  */
 
 public enum RoShamBo2 implements Competitor<RoShamBo2> {
