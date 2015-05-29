@@ -36,6 +36,9 @@ public class ComponentsWithActionListener extends JFrame  {
 
     private JToggleButton tb = new JToggleButton("ToggleButton 1");
 
+    private String[] pets = {"Bird", "Cat", "Dog", "Rabbit", "Pig"};
+    private JComboBox petList = new JComboBox(pets);
+
     private JMenuBar menuBar = new JMenuBar();
     private JMenu    menu    = new JMenu("Menu 1");
     private JMenu    submenu = new JMenu("Submenu 1");
@@ -79,9 +82,13 @@ public class ComponentsWithActionListener extends JFrame  {
             }
             else if (e.getSource() instanceof JPasswordField) {
                 name = ((JPasswordField)e.getSource()).getText();
+            }
+            else if (e.getSource() instanceof JComboBox) {
+                // JComboBox cb = (JComboBox)e.getSource();
+                // String petName = (String)cb.getSelectedItem();
+                name = (String)((JComboBox)e.getSource()).getSelectedItem();
             }  
-            textArea.append(name + newline);
-            
+            textArea.append(name + newline);            
         }
     };
 
@@ -98,45 +105,48 @@ public class ComponentsWithActionListener extends JFrame  {
 
         setJMenuBar(menuBar);
 
-        JPanel panel = new JPanel(new GridBagLayout());
-        
-
-        textArea = new JTextArea(5, 20);
-        textArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-
-        //Add Components to this panel.
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridwidth = GridBagConstraints.REMAINDER;
- 
-        c.fill = GridBagConstraints.HORIZONTAL;
-        panel.add(textField, c);
-        panel.add(formattedTextField, c);
-        formattedTextField.setColumns(20);
-
-        panel.add(passwordField, c);
- 
-        c.fill = GridBagConstraints.BOTH;
-        c.weightx = 1.0;
-        c.weighty = 1.0;
-        panel.add(scrollPane, c);
-
-
         b.addActionListener(action);
         cb.addActionListener(action);
         rb.addActionListener(action);
         tb.addActionListener(action);
         textField.addActionListener(action);
-        formattedTextField.addActionListener(action);
-        passwordField.addActionListener(action);
 
+        formattedTextField.addActionListener(action);
+        formattedTextField.setColumns(20);
+
+        passwordField.addActionListener(action);
+        petList.addActionListener(action);
+        mi.addActionListener(action);
+        cbmi.addActionListener(action);
+        rbmi.addActionListener(action);
+
+        textArea = new JTextArea(5, 20);
+        textArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+
+        // Create panell
+        JPanel panel = new JPanel(new GridBagLayout());
+
+        // Add Components to this panel.
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(textField, c);
+        panel.add(formattedTextField, c);
+        panel.add(passwordField, c);
+        panel.add(petList);
+ 
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+        panel.add(scrollPane, c);
+        
         panel.add(b);
         panel.add(rb);
         panel.add(cb);
         panel.add(tb);
-
-        add(panel);
         
+        add(panel);        
     }
 
     public static void main(String[] args) {
