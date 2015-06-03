@@ -22,24 +22,25 @@ public class SplitPaneDemo2 extends JFrame {
     
     private AbstractDocument doc;
 
-    private JTextPane  textPane; 
-    private JTextArea  changeLog; 
-    private JLabel     label;
+    private JTextPane    sqlTextPane; 
+    private JEditorPane  lessonTextPane; 
+    private JTextArea    changeLog; 
+    private JLabel       label;
 
     public SplitPaneDemo2() {
         super("SplitPaneDemo2");
 
-        textPane = new JTextPane();
-        textPane.setCaretPosition(0);
-        textPane.setMargin(new Insets(5,5,5,5));
-        StyledDocument styledDoc = textPane.getStyledDocument();
+        sqlTextPane = new JTextPane();
+        sqlTextPane.setCaretPosition(0);
+        sqlTextPane.setMargin(new Insets(5,5,5,5));
+        StyledDocument styledDoc = sqlTextPane.getStyledDocument();
         if (styledDoc instanceof AbstractDocument) {
             doc = (AbstractDocument)styledDoc;
         } else {
             System.err.println("Text pane's document isn't an AbstractDocument!");
             System.exit(-1);
         }
-        JScrollPane scrollPane = new JScrollPane(textPane);
+        JScrollPane scrollPane = new JScrollPane(sqlTextPane);
         scrollPane.setPreferredSize(new Dimension(200, 200));
 
         //Create the text area for the status log and configure it.
@@ -48,10 +49,11 @@ public class SplitPaneDemo2 extends JFrame {
         JScrollPane scrollPaneForLog = new JScrollPane(changeLog);
  
         //Create a split pane for the change log and the text area.
-        JSplitPane leftPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollPane, scrollPaneForLog);
+        JSplitPane leftPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scrollPane, scrollPaneForLog);
         leftPane.setOneTouchExpandable(true);
 
-
+        //Provide minimum sizes for the two components in the split pane
+        leftPane.setMinimumSize(new Dimension(100, 50));
         
         //XXXX: Bug #4131528, borders on nested split panes accumulate.
         //Workaround: Set the border on any split pane within
@@ -59,18 +61,19 @@ public class SplitPaneDemo2 extends JFrame {
         //panes need to have their own border for this to work well.
         leftPane.setBorder(null);
  
-        //Create a regular old label
-        label = new JLabel("Click on an image name in the list.", JLabel.CENTER);
+        lessonTextPane = new JEditorPane();
+        lessonTextPane.setEditable(false);
+        lessonTextPane.setCaretPosition(0);
+        lessonTextPane.setMargin(new Insets(5,5,5,5));
+
+        JScrollPane scrollPaneForLesson = new JScrollPane(lessonTextPane);
+        scrollPaneForLesson.setPreferredSize(new Dimension(200, 200));
  
         //Create a split pane and put "top" (a split pane)
         //and JLabel instance in it.
-        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, leftPane, label);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPane, scrollPaneForLesson);
         splitPane.setOneTouchExpandable(true);
         splitPane.setDividerLocation(180);
- 
-        //Provide minimum sizes for the two components in the split pane
-        // leftPane.setMinimumSize(new Dimension(100, 50));
-        label.setMinimumSize(new Dimension(100, 30));
  
         //Add the split pane to this frame
         getContentPane().add(splitPane);
