@@ -23,20 +23,52 @@ public class ButtonTrackEvent extends JFrame {
 
 
     private JButton    button = new JButton("Button 0");
-    private JTextField field  = new JTextField(25);
+    private JTextField field  = new JTextField(40);
+    private JTextArea  area   = new JTextArea(40, 65);
+
+    FocusListener fl = new FocusListener() {
+        public void focusGained(FocusEvent e) {
+            log(e.paramString());
+        }
+        
+        public void focusLost(FocusEvent e) {
+            log(e.paramString());
+        }
+    };
+
+    KeyListener kl = new KeyListener() {
+        public void keyPressed(KeyEvent e) {
+            log(e.paramString());
+        }
+        
+        public void keyReleased(KeyEvent e) {
+            log(e.paramString());
+        }
+
+        public void keyTyped(KeyEvent e) {
+            log(e.paramString());
+        }
+    };
+
+    private void log(String message) {
+        area.append(message+"\n");
+    }
 
     public ButtonTrackEvent() {
         addComponentsToPane(getContentPane());
     }
 
     public void addComponentsToPane(Container pane) {
-        JPanel panel = new JPanel(new GridBagLayout());
-
         
-        panel.add(field);
+
+        button.addFocusListener(fl);
+        button.addKeyListener(kl);
+        
+        JPanel panel = new JPanel();
         panel.add(button);
 
-        pane.add(panel);
+        pane.add(BorderLayout.SOUTH, panel);
+        pane.add(new JScrollPane(area)); 
     }
 
     public static void main(String[] args) {
