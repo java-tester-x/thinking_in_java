@@ -41,7 +41,7 @@ public class ButtonRandomColor extends JFrame {
         public ColorButton(String label) {
             super(label);
             addActionListener(bl);
-            bl.actionPerformed(new ActionEvent("", 0, ""));
+            bl.actionPerformed(new ActionEvent(this, 0, ""));
         }
     }
 
