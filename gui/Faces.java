@@ -13,8 +13,6 @@ import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import java.lang.reflect.*;
-
 import net.mindview.util.*;
 
 public class Faces extends JFrame {
