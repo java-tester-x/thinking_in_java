@@ -34,12 +34,12 @@ public class CheckBoxes extends JFrame {
         });
         cb2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                trace("1", cb2);
+                trace("2", cb2);
             }
         });
         cb3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                trace("1", cb3);
+                trace("3", cb3);
             }
         });
 
