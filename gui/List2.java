@@ -2,7 +2,7 @@ package gui;
 
 /**
  * RUN:
- *         javac -cp .; gui/List.java && java -cp .; gui.List
+ *         javac -cp .; gui/List2.java && java -cp .; gui.List2
  * OUTPUT:
  *         
  */
@@ -16,8 +16,8 @@ import java.awt.event.*;
 
 import net.mindview.util.*;
 
-public class List extends JFrame {
-
+public class List2 extends JFrame {
+    
     private static final int WIDTH  = 250;
     private static final int HEIHGT = 375;
 
@@ -28,21 +28,11 @@ public class List extends JFrame {
         
     };
 
-    private DefaultListModel lItems = new DefaultListModel();
-    private JList            lst    = new JList(lItems);
+    // private DefaultListModel lItems = new DefaultListModel();
+    // private JList            lst    = new JList(lItems);
+    
+    private JList            lst    = new JList(flavors);
     private JTextArea        t      = new JTextArea(flavors.length, 20);
-    private JButton          b      = new JButton("Add item");
-
-    private ActionListener bl = new ActionListener(){
-        public void actionPerformed(ActionEvent e) {
-            if (count < flavors.length) {
-                lItems.add(0, flavors[count++]);
-                return;
-            }
-            
-            b.setEnabled(false);
-        }
-    };
 
     private ListSelectionListener ll = new ListSelectionListener(){
         public void valueChanged(ListSelectionEvent e) {
@@ -59,28 +49,30 @@ public class List extends JFrame {
 
     private int count = 0;
 
-    public List() {
+    public List2() {
         t.setEditable(false);
 
         setLayout(new FlowLayout());
 
         Border brd = BorderFactory.createMatteBorder(1, 1, 2, 2, Color.BLACK);
         // lst.setBorder(brd);
-        // t.setBorder(brd);
+        t.setBorder(brd);
 
-        for (int i = 0; i < 4; i++) {
-            lItems.addElement(flavors[count++]);
-        }
+        // for (int i = 0; i < 4; i++) {
+        //     lItems.addElement(flavors[count++]);
+        // }
 
         add(t);
-        add(new JScrollPane(lst));
-        add(b);
+
+        JScrollPane scrollPane = new JScrollPane(lst);
+        scrollPane.setPreferredSize(new Dimension(150, 100));
+        add(scrollPane);
 
         lst.addListSelectionListener(ll);
-        b.addActionListener(bl);
     }
 
     public static void main(String[] args) {
-        SwingConsole.run(new List(), WIDTH, HEIHGT);
+        SwingConsole.run(new List2(), WIDTH, HEIHGT);
     }
+
 }
