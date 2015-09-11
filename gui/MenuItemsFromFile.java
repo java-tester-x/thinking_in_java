@@ -27,14 +27,37 @@ public class MenuItemsFromFile extends JFrame {
 
     public MenuItemsFromFile()
     {
-        add(mb);
-        String[] words = getWordsFromFile("gui/MenuItemsFromFile.java");
-        for (int i = 0; i < words.length; i++) {
+        String[] words = getWordsFromFile("gui/loremipsum.txt");
+
+        JMenu m     = new JMenu();
+        JMenu subm  = new JMenu();
+
+        for (int i = 0; i < words.length; i++)
+        {
             System.out.print(words[i] + " ");
             if (i % 10 == 0) {
                 System.out.println();
             }
+
+            int part = i % 10; 
+
+            if (part == 0) {
+                m = new JMenu(words[i]);
+                mb.add(m);
+                continue;
+            }
+
+            
+            if (part == 1 || part == 5) {
+                subm = new JMenu(words[i]);
+                m.add(subm);                
+                continue;
+            }
+            
+            subm.add(new JMenuItem(words[i]));            
         }
+
+        setJMenuBar(mb);     
     }
 
     private String[] getWordsFromFile(String fileName)

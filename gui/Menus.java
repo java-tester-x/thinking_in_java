@@ -41,7 +41,7 @@ public class Menus extends JFrame {
     private JMenuItem[] file = { new JMenuItem("Open") };
 
 
-    private JMenuBar mb2 = new JMenuBar();
+    private JMenuBar mb2    = new JMenuBar();
     private JMenu    fooBar = new JMenu("fooBar");
     private JMenuItem[] other = {
         new JMenuItem("Foo", KeyEvent.VK_F),
