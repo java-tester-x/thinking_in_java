@@ -94,11 +94,23 @@ public class RectangleRotation extends JFrame {
         {
             super.paintComponent(g);
 
-            int maxWidth  = getWidth();
-            int maxHeight = getHeight();
+            Graphics2D g2 = (Graphics2D) g;
+            Dimension  d  = getSize();
+            int w = d.width;
+            int h = d.height;
 
-            int xTopLeft  = (maxWidth  - rectSize)/2;
-            int yTopLeft  = (maxHeight - rectSize)/2;
+            // int maxWidth  = getWidth();
+            // int maxHeight = getHeight();
+
+            // int xTopLeft  = (maxWidth  - rectSize)/2;
+            // int yTopLeft  = (maxHeight - rectSize)/2;
+            int xTopLeft  = (w - rectSize)/2;
+            int yTopLeft  = (h - rectSize)/2;
+
+            // FOR ROTATION:
+            // 
+            // http://www.java2s.com/Code/Java/2D-Graphics-GUI/Arotatingandscalingrectangle.htm
+            // https://docs.oracle.com/javase/tutorial/2d/advanced/clipping.html
 
             g.setColor(Color.RED);
             g.drawRect(xTopLeft, yTopLeft, rectSize, rectSize);
