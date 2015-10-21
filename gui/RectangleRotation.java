@@ -94,16 +94,24 @@ public class RectangleRotation extends JFrame {
         {
             super.paintComponent(g);
 
+            //
             Graphics2D g2 = (Graphics2D) g;
+
+            // 
+            g2.setRenderingHints(new RenderingHints(
+                RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON
+            ));
+            g2.setRenderingHints(new RenderingHints(
+                RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY
+            ));
+
+            // 
+            AffineTransform at = new AffineTransform();
+            
             Dimension  d  = getSize();
             int w = d.width;
             int h = d.height;
 
-            // int maxWidth  = getWidth();
-            // int maxHeight = getHeight();
-
-            // int xTopLeft  = (maxWidth  - rectSize)/2;
-            // int yTopLeft  = (maxHeight - rectSize)/2;
             int xTopLeft  = (w - rectSize)/2;
             int yTopLeft  = (h - rectSize)/2;
 
