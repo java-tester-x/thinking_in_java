@@ -15,6 +15,7 @@ import javax.swing.event.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.*;
 
 import net.mindview.util.*;
 
@@ -111,17 +112,15 @@ public class RectangleRotation extends JFrame {
             Dimension  d  = getSize();
             int w = d.width;
             int h = d.height;
-
+            
             int xTopLeft  = (w - rectSize)/2;
             int yTopLeft  = (h - rectSize)/2;
 
-            // FOR ROTATION:
-            // 
-            // http://www.java2s.com/Code/Java/2D-Graphics-GUI/Arotatingandscalingrectangle.htm
-            // https://docs.oracle.com/javase/tutorial/2d/advanced/clipping.html
-
-            g.setColor(Color.RED);
-            g.drawRect(xTopLeft, yTopLeft, rectSize, rectSize);
+            at.rotate(Math.toRadians(45));            
+            Shape rect = new Rectangle(xTopLeft, yTopLeft, rectSize, rectSize);
+            
+            g2.setColor(Color.RED);
+            g2.draw(rect);           
         }
 
         public void setSize(int newSize) {
