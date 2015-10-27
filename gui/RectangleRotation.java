@@ -106,21 +106,26 @@ public class RectangleRotation extends JFrame {
                 RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY
             ));
 
-            // 
-            AffineTransform at = new AffineTransform();
-            
             Dimension  d  = getSize();
             int w = d.width;
-            int h = d.height;
-            
+            int h = d.height;            
             int xTopLeft  = (w - rectSize)/2;
             int yTopLeft  = (h - rectSize)/2;
 
-            at.rotate(Math.toRadians(45));            
-            Shape rect = new Rectangle(xTopLeft, yTopLeft, rectSize, rectSize);
-            
             g2.setColor(Color.RED);
-            g2.draw(rect);           
+            Shape rect = new Rectangle(xTopLeft, yTopLeft, rectSize, rectSize);
+            Rectangle rb = rect.getBounds();
+            
+            Path2D.Double path = new Path2D.Double();
+            path.append(rect, false);
+            
+            AffineTransform at = new AffineTransform();
+            
+            at.setToIdentity();
+            // at.translate((rb.width/2), (rb.height/2));
+            at.rotate(Math.toRadians(45), w/2, h/2);
+            path.transform(at);
+            g2.draw(path);
         }
 
         public void setSize(int newSize) {
