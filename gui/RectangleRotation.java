@@ -26,7 +26,9 @@ public class RectangleRotation extends JFrame {
 
     private MainContentPane mainPane = new MainContentPane();
     private JSlider sizeSlider       = new JSlider(0, 255, 50);
-    private JSlider speedSlider      = new JSlider(0, 255, 50);
+    private JSlider speedSlider      = new JSlider(0, 200, 10);
+
+    
 
     public RectangleRotation()
     {
@@ -76,19 +78,34 @@ public class RectangleRotation extends JFrame {
         );
 
         add(BorderLayout.SOUTH, botomPane);
+
+        
     }
 
     public static void main(String[] args) {
         SwingConsole.run(new RectangleRotation(), WIDTH, HEIHGT);
     }
 
-    static class MainContentPane extends JPanel {
+    static class MainContentPane extends JPanel implements ActionListener {
 
-        private int rectSize        = 0;
-        private int rotationSpeed   = 0;
+        private int rectSize        = 30;
+        private int rotationSpeed   =  0;
+        private int rotationAngle   =  0;
+
+        private javax.swing.Timer timer;
 
         public MainContentPane() {
-            drawRectangle(30, 0);
+            // timer = new javax.swing.Timer(rotationSpeed, this);
+            // timer.setInitialDelay(100);
+            // timer.start();
+
+            ActionListener taskPerformer = new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    drawRectangle(rectSize, rotationSpeed);
+                }
+            };
+            timer = new javax.swing.Timer(rotationSpeed, taskPerformer);
+            timer.start();
         }
 
         public void paintComponent(Graphics g)
@@ -123,25 +140,35 @@ public class RectangleRotation extends JFrame {
             
             at.setToIdentity();
             // at.translate((rb.width/2), (rb.height/2));
-            at.rotate(Math.toRadians(45), w/2, h/2);
+            at.rotate(Math.toRadians(rotationAngle), w/2, h/2);
             path.transform(at);
             g2.draw(path);
         }
 
         public void setSize(int newSize) {
-            drawRectangle(newSize, rotationSpeed);
+            // drawRectangle(newSize, rotationSpeed);
+            this.rectSize = newSize;
         }
 
         public void setSpeed(int newSpeed) {
-            drawRectangle(rectSize, newSpeed);
+            // drawRectangle(rectSize, newSpeed);
+            this.rotationSpeed = newSpeed;
         }
 
         public void drawRectangle(int newSize, int newSpeed)
         {
             rectSize      = newSize;
             rotationSpeed = newSpeed;
+            this.rotationAngle++;
+
+            timer.setDelay(rotationSpeed);
 
             repaint();
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            drawRectangle(this.rectSize, this.rotationSpeed);
+            
         }
     }
 }
